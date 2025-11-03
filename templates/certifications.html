@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="text-center py-16 px-4 sm:px-8">
+  <h2 class="text-3xl sm:text-4xl font-bold mb-12">Certifications</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for cert in [
+      {'img': 'corelia.webp', 'title': 'Internship Corelia, RICOH Company', 'issuer': 'Corelia · April 2025',
+       'details': ['Worked on RICOH’s document workflow automation using AI tools.',
+                   'Implemented data preprocessing pipelines for OCR-based systems.',
+                   'Collaborated in a cross-functional engineering team for solution design.']},
+      {'img': 'cic.webp', 'title': 'Best Graduation Project of 2025', 'issuer': 'Canadian International College (CIC) · September 2025',
+       'details': ['Developed an AI-powered smart camera for license plate recognition.',
+                   'Integrated YOLOv8 and OpenCV for object detection and tracking.',
+                   'Ranked first among over 100 final-year projects at CIC.']},
+      {'img': 'iti.webp', 'title': 'ITI AI Training', 'issuer': 'Information Technology Institute (ITI) · August 2024',
+       'details': ['Completed intensive AI & ML training covering Python, TensorFlow, and NLP.',
+                   'Built multiple machine learning models for real-world case studies.',
+                   'Gained experience in data analysis, visualization, and AI ethics.']}
+    ] %}
+    <div class="bg-white shadow-md rounded-xl p-6">
+      <img src="{{ url_for('static', filename='images/' + cert.img) }}" alt="{{ cert.title }}" class="rounded mb-4 w-full h-auto">
+      <h3 class="text-xl font-semibold mb-2">{{ cert.title }}</h3>
+      <p class="text-gray-600 mb-3">Issued by {{ cert.issuer }}</p>
+
+      <button onclick="toggleDetails(this)" class="mt-2 text-blue-600 hover:text-blue-800 flex items-center justify-center space-x-2 mx-auto">
+        <span>Show More</span>
+        <span class="transform transition-transform duration-300">▼</span>
+      </button>
+
+      <div class="hidden mt-3 text-gray-700 text-left">
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          {% for d in cert.details %}
+            <li>{{ d }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="mt-10">
+    <a href="{{ url_for('home') }}" class="text-blue-600 hover:underline">← Back to Home</a>
+  </div>
+</section>
+
+<script>
+  function toggleDetails(button) {
+    const details = button.nextElementSibling;
+    const arrow = button.querySelector("span:last-child");
+    details.classList.toggle("hidden");
+    arrow.classList.toggle("rotate-180");
+    button.querySelector("span:first-child").textContent =
+      details.classList.contains("hidden") ? "Show More" : "Show Less";
+  }
+</script>
+{% endblock %}

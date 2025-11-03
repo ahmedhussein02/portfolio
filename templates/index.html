@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section id="home" class="text-center py-16 px-4 sm:px-8">
+  <h2 class="text-3xl sm:text-4xl font-bold mb-4">Hi, I’m Ahmed Hussein</h2>
+  <p class="text-base sm:text-lg mb-8">Machine Learning Engineer | Data Enthusiast | Problem Solver</p>
+
+  <a href="https://drive.google.com/file/d/1uv5cT9vgqhCpzCC7f5WlsgzUO1aC5tYX/view?usp=sharing" 
+     target="_blank"
+     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition">
+     View Resume
+  </a>
+</section>
+
+<!-- What I Do Section -->
+<section id="whatido" class="py-20 border-t border-gray-300 px-4 sm:px-8">
+  <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12">What I Do</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+    <div class="p-6 bg-white shadow-lg rounded-xl text-center">
+      <h3 class="text-xl sm:text-2xl font-semibold mb-4">Machine Learning & AI</h3>
+      <p>Building, training, and deploying ML models tailored to each business need.</p>
+    </div>
+    <div class="p-6 bg-white shadow-lg rounded-xl text-center">
+      <h3 class="text-xl sm:text-2xl font-semibold mb-4">Data Engineering</h3>
+      <p>Handling data and reconstructing it, making it usable and fitting to each specific business goal.</p>
+    </div>
+    <div class="p-6 bg-white shadow-lg rounded-xl text-center">
+      <h3 class="text-xl sm:text-2xl font-semibold mb-4">Software Development</h3>
+      <p>Creating efficient, scalable, and maintainable software systems.</p>
+    </div>
+    <div class="p-6 bg-white shadow-lg rounded-xl text-center">
+      <h3 class="text-xl sm:text-2xl font-semibold mb-4">Visualization & Insights</h3>
+      <p>Translating complex data into clear, actionable insights and visuals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 border-t border-gray-300 text-center px-4 sm:px-8">
+  <h2 class="text-2xl sm:text-3xl font-bold mb-8">Contact Me</h2>
+  <p class="text-base sm:text-lg mb-6">Feel free to reach out via email or connect on my social platforms.</p>
+
+  <div class="flex flex-col items-center space-y-4">
+    <div class="flex items-center space-x-3 text-lg sm:text-xl">
+      <span class="text-2xl sm:text-3xl">📧</span>
+      <a href="mailto:ahmedhussein.root@gmail.com" class="text-blue-700 hover:underline">
+        ahmedhussein.root@gmail.com
+      </a>
+    </div>
+
+    <div class="flex justify-center space-x-8 mt-4">
+      <a href="https://github.com/ahmedhussein02" class="hover:opacity-80" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-8 h-8" alt="GitHub">
+      </a>
+      <a href="https://linkedin.com/in/ahmedhussein02" class="hover:opacity-80" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" class="w-8 h-8" alt="LinkedIn">
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

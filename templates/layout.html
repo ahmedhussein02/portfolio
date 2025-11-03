@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <title>{{ title if title else "Ahmed Hussein | Portfolio" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <nav class="max-w-5xl mx-auto flex justify-between items-center py-4 px-6">
+
+      <!-- Hamburger (visible on small screens) -->
+      <button id="menu-btn" class="text-2xl md:hidden focus:outline-none">☰</button>
+
+      <!-- Nav links -->
+      <div id="nav-links" class="hidden md:flex flex-col md:flex-row md:space-x-6 text-center md:text-left mx-auto mt-4 md:mt-0">
+        <a href="{{ url_for('home') }}#home" class="block py-2 hover:text-blue-600">Home</a>
+        <a href="{{ url_for('home') }}#whatido" class="block py-2 hover:text-blue-600">What I Do</a>
+        <a href="{{ url_for('home') }}#contact" class="block py-2 hover:text-blue-600">Contact</a>
+        <a href="{{ url_for('certifications') }}" class="block py-2 hover:text-blue-600">Certifications</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-12">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="bg-gray-900 text-white text-center py-4 mt-12 text-sm sm:text-base">
+    &copy; 2025 Ahmed Hussein — Built with Flask & Tailwind.
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>

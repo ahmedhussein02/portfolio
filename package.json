@@ -1,0 +1,20 @@
+{
+  "name": "my_portfolio",
+  "version": "1.0.0",
+  "description": "Ahmed Hussein Portfolio Website",
+  "main": "index.js",
+  "scripts": {
+    "dev:css": "npx @tailwindcss/cli -i ./static/src/input.css -o ./static/css/output.css --watch",
+    "build:css": "npx @tailwindcss/cli -i ./static/src/input.css -o ./static/css/output.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ahmed Hussein",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.16",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.16"
+  }
+}
