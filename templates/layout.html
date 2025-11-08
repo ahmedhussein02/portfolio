@@ -13,12 +13,24 @@
   <header class="bg-white shadow sticky top-0 z-50">
     <nav class="max-w-5xl mx-auto flex justify-between items-center py-4 px-6">
 
+      <!-- Left side: GitHub/LinkedIn -->
+      <div class="flex items-center space-x-4">
+        <a href="https://github.com/ahmedhussein02" class="hover:opacity-80" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-6 h-6" alt="GitHub">
+        </a>
+        <a href="https://linkedin.com/in/ahmedhussein02" class="hover:opacity-80" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" class="w-6 h-6" alt="LinkedIn">
+        </a>
+      </div>
+
       <!-- Hamburger (visible on small screens) -->
       <button id="menu-btn" class="text-2xl md:hidden focus:outline-none">☰</button>
 
       <!-- Nav links -->
       <div id="nav-links" class="hidden md:flex flex-col md:flex-row md:space-x-6 text-center md:text-left mx-auto mt-4 md:mt-0">
-        <a href="{{ url_for('home') }}#home" class="block py-2 hover:text-blue-600">Home</a>
+        <!-- <a href="{{ url_for('home') }}#home" class="block py-2 hover:text-blue-600">Home</a> -->
+        <a href="{{ url_for('home') }}" class="block py-2 hover:text-blue-600">Home</a>
+        <a href="{{ url_for('home') }}#about" class="block py-2 hover:text-blue-600">About</a>
         <a href="{{ url_for('home') }}#whatido" class="block py-2 hover:text-blue-600">What I Do</a>
         <a href="{{ url_for('home') }}#contact" class="block py-2 hover:text-blue-600">Contact</a>
         <a href="{{ url_for('certifications') }}" class="block py-2 hover:text-blue-600">Certifications</a>

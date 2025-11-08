@@ -3,14 +3,49 @@
 
 <!-- Hero Section -->
 <section id="home" class="text-center py-16 px-4 sm:px-8">
-  <h2 class="text-3xl sm:text-4xl font-bold mb-4">Hi, I’m Ahmed Hussein</h2>
-  <p class="text-base sm:text-lg mb-8">Machine Learning Engineer | Data Enthusiast | Problem Solver</p>
+  <!-- Profile Picture -->
+  <div class="flex justify-center mb-8">
+    <img src="{{ url_for('static', filename='images/profile.jpg') }}" 
+         alt="Ahmed Hussein" 
+         class="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-gray-300">
+  </div>
+
+  <!-- Tagline -->
+  <p class="text-base sm:text-lg mb-6">Machine Learning Engineer | Data Enthusiast | Problem Solver</p>
+
+  <!-- Name -->
+  <h2 class="text-3xl sm:text-4xl font-bold mb-12">Hi, I’m Ahmed Hussein</h2>
 
   <a href="https://drive.google.com/file/d/1uv5cT9vgqhCpzCC7f5WlsgzUO1aC5tYX/view?usp=sharing" 
      target="_blank"
      class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition">
      View Resume
   </a>
+</section>
+
+
+<!-- About Section -->
+<section id="about" class="py-20 border-t border-gray-300 px-4 sm:px-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-12 mt-40">
+  <!-- Portrait -->
+  <div class="flex-shrink-0">
+    <img src="{{ url_for('static', filename='images/image1.jpg') }}" 
+         alt="Ahmed Hussein Portrait" 
+         class="w-64 h-64 sm:w-80 sm:h-80 rounded-xl object-cover shadow-lg">
+  </div>
+
+  <!-- About Text -->
+  <div class="max-w-xl">
+    <h2 class="text-2xl sm:text-3xl font-bold mb-4">Here is a little background about me!</h2>
+    <p class="text-base sm:text-lg mb-2">
+      Hey 👋🏼 I’m a Machine Learning Engineer and recent Computer Science graduate from the Canadian International College 'CIC' (2021 - 2025). I have experience building machine learning models, a very solid foundation in data processing and Python.
+    </p>
+    <p class="text-base sm:text-lg mb-2">
+      I’m currently based in Cairo, Egypt, and have a spark for everything related to AI, data, and coding.
+    </p>
+    <p class="text-base sm:text-lg">
+      Outside of tech, I'm also a guitarist 🎸 where I always enjoy discovering and practicing music pieces just like I enjoy practicing code.
+    </p>
+  </div>
 </section>
 
 <!-- What I Do Section -->
@@ -37,11 +72,12 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="py-20 border-t border-gray-300 text-center px-4 sm:px-8">
-  <h2 class="text-2xl sm:text-3xl font-bold mb-8">Contact Me</h2>
+<section id="contact" class="py-20 border-t border-gray-300 text-center px-4 sm:px-8 mt-48">
+  <h2 class="text-2xl sm:text-3xl font-bold mb-8">Contact</h2>
   <p class="text-base sm:text-lg mb-6">Feel free to reach out via email or connect on my social platforms.</p>
 
   <div class="flex flex-col items-center space-y-4">
+    <!-- Email -->
     <div class="flex items-center space-x-3 text-lg sm:text-xl">
       <span class="text-2xl sm:text-3xl">📧</span>
       <a href="mailto:ahmedhussein.root@gmail.com" class="text-blue-700 hover:underline">
@@ -49,6 +85,15 @@
       </a>
     </div>
 
+    <!-- Location -->
+    <div class="flex items-center space-x-2 text-gray-700 text-base sm:text-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+      </svg>
+      <span>New Cairo, Egypt</span>
+    </div>
+
+    <!-- Social Icons -->
     <div class="flex justify-center space-x-8 mt-4">
       <a href="https://github.com/ahmedhussein02" class="hover:opacity-80" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-8 h-8" alt="GitHub">
@@ -59,5 +104,6 @@
     </div>
   </div>
 </section>
+
 
 {% endblock %}
