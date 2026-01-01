@@ -6,14 +6,17 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
     {% for cert in [
       {'img': 'corelia.webp', 'title': 'Internship Corelia, RICOH Company', 'issuer': 'Corelia · April 2025',
+       'link': 'https://drive.google.com/file/d/16z5posqTXdD-4qfVTZeR2C0QkBcexAXF/view',
        'details': ['Worked on RICOH’s document workflow automation using AI tools.',
                    'Implemented data preprocessing pipelines for OCR-based systems.',
                    'Collaborated in a cross-functional engineering team for solution design.']},
       {'img': 'cic.webp', 'title': 'Best Graduation Project of 2025', 'issuer': 'Canadian International College (CIC) · September 2025',
+       'link': 'https://drive.google.com/file/d/1_n4BsGsD4YJMWjmNkGMNvIc-G0ckS5JB/view',
        'details': ['Developed an AI-powered smart camera for license plate recognition.',
                    'Integrated YOLOv8 and OpenCV for object detection and tracking.',
                    'Ranked first among over 100 final-year projects at CIC.']},
       {'img': 'iti.webp', 'title': 'ITI AI Training', 'issuer': 'Information Technology Institute (ITI) · August 2024',
+       'link': 'https://drive.google.com/file/d/1PIiNT2MijjVEvZQsz6hI_77Y0dT5LnFL/view',
        'details': ['Completed intensive AI & ML training covering Python, TensorFlow, and NLP.',
                    'Built multiple machine learning models for real-world case studies.',
                    'Gained experience in data analysis, visualization, and AI ethics.']}
@@ -35,10 +38,64 @@
           {% endfor %}
         </ul>
       </div>
+
+      {% if cert.link %}
+        <div class="mt-4 text-center">
+          <a
+            href="{{ cert.link }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:text-blue-800 font-medium underline"
+          >
+            Link
+          </a>
+        </div>
+      {% endif %}
     </div>
     {% endfor %}
   </div>
 
+</section>
+
+<!-- Projects Section -->
+<section class="text-center py-16 px-4 sm:px-8">
+  <h2 class="text-4xl sm:text-4xl font-bold mb-12">Projects</h2>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    {% for project in [
+      {'title': 'Virtual Canvas', 'details': ['A virtual drawing canvas web application built with Flask and JS.', 
+                                              'Supports freehand drawing, color selection, and save functionality.'],
+       'link': 'https://github.com/ahmedhussein02/virtual-drawing-canvas'}
+    ] %}
+    <div class="bg-white shadow-md rounded-xl p-6">
+      <h3 class="text-xl font-semibold mb-2">{{ project.title }}</h3>
+
+      <button onclick="toggleDetails(this)" class="mt-2 text-blue-600 hover:text-blue-800 flex items-center justify-center space-x-2 mx-auto">
+        <span>Show More</span>
+        <span class="transform transition-transform duration-300">▼</span>
+      </button>
+
+      <div class="hidden mt-3 text-gray-700 text-left">
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          {% for d in project.details %}
+            <li>{{ d }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="mt-4 text-center">
+        <a
+          href="{{ project.link }}"
+          target="_blank"
+          class="text-blue-600 hover:text-blue-800 font-medium underline"
+        >
+          Link
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
   <div class="mt-10">
     <a href="{{ url_for('home') }}" class="text-blue-600 hover:underline">← Back to Home</a>
   </div>

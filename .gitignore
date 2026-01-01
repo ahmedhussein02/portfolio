@@ -37,3 +37,6 @@ develop-eggs/
 .installed.cfg
 *.manifest
 *.spec
+
+# --- txt ---
+.user.txt

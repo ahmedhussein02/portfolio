@@ -1,0 +1,14 @@
+Server Not Found.. website not accessible.. probable fix:
+You keep your domain at Hostinger, but change its DNS nameservers to Cloudflare.
+Then Cloudflare handles all DNS traffic → no more random outages.
+
+Once deployed, future workflow is simple:
+Make local changes (HTML, Python routes, CSS).
+Test locally:
+venv\Scripts\activate
+python app.py
+npm run dev:css
+Commit and push to GitHub:
+git add .
+git commit -m "Updated about page and styles"
+git push
