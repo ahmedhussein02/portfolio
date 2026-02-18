@@ -1,0 +1,173 @@
+{% extends "layout.html" %} {% block content %}
+<div class="py-6">
+  <h1 class="text-3xl font-bold text-gray-900 text-center mb-12">Enterprise AI Solutions</h1>
+  
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-xl font-bold text-gray-900">Invoice processing using Azure DocIntelligence</h1>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+      <div class="p-6">
+        <p id="upload-status" class="hidden text-sm font-medium text-blue-600 mb-4 text-center"></p>
+        
+        <div class="flex flex-col items-center space-y-4">
+            <div 
+                id="drop-zone" 
+                onclick="document.getElementById('invoice-file').click()"
+                class="w-full border-2 border-dashed border-gray-200 rounded-xl p-8 text-center hover:border-blue-400 hover:bg-blue-50/50 transition-all cursor-pointer"
+            >
+                <p class="text-gray-500 font-medium">Drop PDF here or click to browse</p>
+                <p class="text-xs text-gray-400 mt-1">Processing done by Azure DocIntelligence</p>
+            </div>
+            <input type="file" id="invoice-file" class="hidden" accept="application/pdf" onchange="uploadInvoice()" />
+            
+            <button onclick="document.getElementById('invoice-file').click()" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm">
+                Upload Invoice
+            </button>
+        </div>
+
+        <!-- SIMPLIFIED RESULTS DISPLAY -->
+        <div id="invoice-results" class="mt-8 hidden text-sm text-gray-800 space-y-2">
+          <p><strong>Invoice #:</strong> <span id="res-inv-no">-</span></p>
+          <p><strong>Date:</strong> <span id="res-date">-</span></p>
+          <p><strong>Items Count:</strong> <span id="res-items-count">-</span></p>
+
+          <hr class="my-3">
+
+          <p><strong>Vendor Name:</strong> <span id="res-vendor">-</span></p>
+          <p><strong>Vendor Address:</strong> <span id="res-vendor-addr">-</span></p>
+          <!-- <p><strong>Vendor Tax ID:</strong> <span id="res-vendor-tax">-</span></p> -->
+
+          <hr class="my-3">
+
+          <p><strong>Client Name:</strong> <span id="res-client">-</span></p>
+          <p><strong>Client Address:</strong> <span id="res-client-addr">-</span></p>
+          <!-- <p><strong>Client Tax ID:</strong> <span id="res-client-tax">-</span></p> -->
+
+          <hr class="my-3">
+
+          <p><strong>IBAN / Payment Ref:</strong> <span id="res-iban">-</span></p>
+          <p><strong>Total Amount:</strong> <span id="res-total">-</span></p>
+        </div>
+        <!-- END RESULTS -->
+
+      </div>
+    </div>
+
+    <div class="flex flex-col space-y-4">
+        <div>
+            <h1 class="text-xl font-bold">RAG Knowledge Assistant</h1>
+            <p class="text-sm text-gray-600 mb-2">
+              - Query and evaluate sales, customer activity, etc..<br>
+              - Help evaluate salesperson performance.<br>
+              - Ask about policies.<br>
+              - Provide insights on purchase patterns.<br>
+            </p>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col h-[550px]">
+          <div id="chat-container" class="grow p-6 overflow-y-auto space-y-4 bg-slate-50 text-sm">
+            Welcome! I am your AI companion. How can I assist you with the ERP data today?
+          </div>
+
+          <div class="p-4 bg-slate-50 flex justify-center border-t border-gray-100">
+            <form onsubmit="event.preventDefault(); askAI();" class="w-3/4">
+              <input
+                type="text"
+                id="user-query"
+                placeholder="Ask anything.."
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none shadow-sm"
+              />
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    const dropZone = document.getElementById('drop-zone');
+    ['dragover', 'dragleave', 'drop'].forEach(name => {
+        dropZone.addEventListener(name, e => e.preventDefault());
+    });
+    dropZone.addEventListener('drop', (e) => {
+        const files = e.dataTransfer.files;
+        if (files.length) {
+            document.getElementById('invoice-file').files = files;
+            uploadInvoice();
+        }
+    });
+
+    async function askAI() {
+        const input = document.getElementById('user-query');
+        const chatContainer = document.getElementById('chat-container');
+        const query = input.value;
+        if (!query.trim()) return;
+
+        chatContainer.innerHTML += `<div class="flex justify-end mb-4"><div class="bg-blue-600 text-white rounded-lg p-3 max-w-[80%] shadow-sm">${query}</div></div>`;
+        input.value = '';
+        const thinkingId = "thinking-" + Date.now();
+        chatContainer.innerHTML += `<div id="${thinkingId}" class="flex justify-start mb-4"><div class="bg-gray-100 text-gray-800 rounded-lg p-3 max-w-[80%] italic shadow-sm">Thinking...</div></div>`;
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({query: query})
+            });
+            const data = await response.json();
+            document.getElementById(thinkingId).innerHTML = `<div class="font-bold mb-1 text-blue-600">AI:</div>${data.response}`;
+        } catch (error) {
+            document.getElementById(thinkingId).innerHTML = "Error reaching AI service.";
+        }
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    async function uploadInvoice() {
+        const fileInput = document.getElementById('invoice-file');
+        const status = document.getElementById('upload-status');
+        const resultsDiv = document.getElementById('invoice-results');
+
+        if (!fileInput || fileInput.files.length === 0) return;
+
+        status.classList.remove('hidden');
+        status.innerText = "⏳ AI is extracting fields...";
+        
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        try {
+            const response = await fetch('/api/upload-invoice', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            
+            document.getElementById('res-inv-no').innerText = data.InvoiceNo || "N/A";
+            document.getElementById('res-date').innerText = data.InvoiceDate || "N/A";
+            document.getElementById('res-items-count').innerText = data.TotalItems || "0";
+            
+            document.getElementById('res-vendor').innerText = data.VendorName || "Not found";
+            document.getElementById('res-vendor-addr').innerText = data.VendorAddress || "Address not detected";
+            //document.getElementById('res-vendor-tax').innerText = data.VendorTaxId || "N/A";
+            
+            document.getElementById('res-client').innerText = data.ClientName || "Not found";
+            document.getElementById('res-client-addr').innerText = data.ClientAddress || "Address not detected";
+            //document.getElementById('res-client-tax').innerText = data.ClientTaxId || "N/A";
+            
+            document.getElementById('res-iban').innerText = data.IBAN || "Not Provided";
+            document.getElementById('res-total').innerText = "$" + (data.InvoiceTotal || "0.00");
+
+            status.innerText = "✅ Extraction Complete";
+            resultsDiv.classList.remove('hidden');
+
+        } catch (err) {
+            console.error("JS Error:", err);
+            status.innerText = "❌ Error: " + err.message;
+        }
+    }
+</script>
+{% endblock %}

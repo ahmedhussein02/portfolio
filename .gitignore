@@ -5,8 +5,8 @@ __pycache__/
 *.pyd
 
 # Virtual environment
-venv/
-.env/
+.venv/
+.env
 
 # --- Node / Tailwind ---
 node_modules/
@@ -39,4 +39,9 @@ develop-eggs/
 *.spec
 
 # --- txt ---
-.user.txt
+user.txt
+
+# --- data ---
+data/
+setup_search.py
+static/invoice_samples/
