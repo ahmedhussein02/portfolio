@@ -3,8 +3,18 @@
 <section class="text-center py-16 px-4 sm:px-8">
   <h2 class="text-3xl sm:text-4xl font-bold mb-12">Certifications</h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
     {% for cert in [
+      {
+        'img': 'microsoft_logo.webp', 
+        'title': 'Microsoft Applied Skills Build NLP solutions with Azure AI', 
+        'issuer': 'Microsoft · Feb 2026',
+        'link': 'https://learn.microsoft.com/en-us/users/ahmedhussein-0080/credentials/4ea4e0e1ba878b08?ref=https%3A%2F%2Fwww.linkedin.com%2F',
+        'details': [
+          'A specialized credential focused on developing natural language solutions.',
+          'I gained hands-on experience in using Azure’s pre-built and custom AI models'
+        ]
+      },
       {'img': 'corelia.webp', 'title': 'Internship Corelia, RICOH Company', 'issuer': 'Corelia · April 2025',
        'link': 'https://drive.google.com/file/d/16z5posqTXdD-4qfVTZeR2C0QkBcexAXF/view',
        'details': ['Did researches on several areas and fields of study on computer-vision.',
