@@ -15,7 +15,7 @@
           'I gained hands-on experience in using Azure’s pre-built and custom AI models'
         ]
       },
-      {'img': 'corelia.webp', 'title': 'Internship Corelia, RICOH Company', 'issuer': 'Corelia · April 2025',
+      {'img': 'corelia.webp', 'title': 'Internship Corelia, RICOH France', 'issuer': 'Corelia · April 2025',
        'link': 'https://drive.google.com/file/d/16z5posqTXdD-4qfVTZeR2C0QkBcexAXF/view',
        'details': ['Did researches on several areas and fields of study on computer-vision.',
                    'Performed model training and experimentations with different data modalities and used several deep learning models.',
@@ -27,9 +27,9 @@
                    'Recognized as Best Graduation Project at the Canadian International College. Graded A+.']},
       {'img': 'iti.webp', 'title': 'ITI AI Training', 'issuer': 'Information Technology Institute (ITI) · August 2024',
        'link': 'https://drive.google.com/file/d/1PIiNT2MijjVEvZQsz6hI_77Y0dT5LnFL/view',
-       'details': ['Completed intensive ML & DL training covering Python Basics, ML Libraries [tensorflow, pytorch, scikit-learn, etc.. ]',
+       'details': ['Completed intensive ML & DL training utilizing ML Libraries [tensorflow, pytorch, scikit-learn, etc.. ]',
                    'Built multiple machine learning models for different purposes.',
-                   'The training focused on ML and covered a wide range of ML usecases up until an introduction to DL.']}
+                   'The training focused on ML and covered a wide range of ML usecases.']}
     ] %}
     <div class="bg-white shadow-md rounded-xl p-6">
       <img src="{{ url_for('static', filename='images/' + cert.img) }}" alt="{{ cert.title }}" class="rounded mb-4 w-full h-auto">
@@ -74,14 +74,6 @@
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
     {% for project in [
       {
-        'title': 'Virtual Canvas', 
-        'details': [
-            'A virtual drawing canvas web application built with Flask and JS.', 
-            'Supports freehand drawing, color selection, and save functionality.'
-        ],
-        'link': 'https://github.com/ahmedhussein02/virtual-drawing-canvas'
-      },
-      {
         'title': 'ERP AI Lab', 
         'details': [
             'An AI-powered ERP service and agent powered by Azure AI Search.',
@@ -90,6 +82,26 @@
             'Answering FAQs using Natural language and by leveraging RAG technique.'
         ],
         'link': url_for('erp_lab')
+      },
+      {
+        'title': 'CRM Sales Agentic AI', 
+        'details': [
+            'Built a multi-agent AI system that automates B2B sales outreach.',
+            'Researching target companies, scoring ICP fit via RAG.',
+            'Generating personalized email sequences.',
+            'Features a LangGraph-orchestrated four-agent pipeline.'
+            '(HITL) human-in-the-loop approval gate, real-time agent activity timeline.'
+            'per-run LLM token cost tracking.'
+        ],
+        'link': 'https://github.com/ahmedhussein02/agentic-ai-sales-crm'
+      },
+      {
+        'title': 'Virtual Canvas', 
+        'details': [
+            'A virtual drawing canvas web application built with Flask and JS.', 
+            'Supports freehand drawing, color selection, and save functionality.'
+        ],
+        'link': 'https://github.com/ahmedhussein02/virtual-drawing-canvas'
       }
     ] %}
     <div class="bg-white shadow-md rounded-xl p-6 border border-gray-100">
